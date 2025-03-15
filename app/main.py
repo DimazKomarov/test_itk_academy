@@ -10,6 +10,10 @@ app = FastAPI()
 app.include_router(currency_router)
 app.include_router(users_router)
 
+@app.get("/")
+def index():
+    return {"message": "Добро пожаловать!"}
 
-if __name__ == "__main__":
-    uvicorn.run(app="main:app", reload=True)
+
+# if __name__ == "__main__":
+#     uvicorn.run(app="main:app", reload=True)

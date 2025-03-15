@@ -1,0 +1,35 @@
+services:
+  app:
+    container_name: app
+    build: .
+    depends_on:
+      - db
+    command: bash -c "alembic upgrade head && uvicorn main:app --host 0.0.0.0 --port 8000"
+    volumes:
+      - ./app:/app
+    ports:
+      - 8000:8000
+    restart: always
+    env_file:
+      - app/.env
+    networks:
+      - dbnet
+
+  db:
+    container_name: db_app
+    image: postgres:17-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - .postgres:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - dbnet
+
+networks:
+  dbnet:
+    driver: bridge
