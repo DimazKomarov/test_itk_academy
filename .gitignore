@@ -173,4 +173,4 @@ cython_debug/
 .pypirc
 
 # private and public keys
-app/certs/
+#app/certs/
