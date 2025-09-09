@@ -1,5 +1,3 @@
-from typing import Annotated
-
 from fastapi import HTTPException, status
 
 from utils.unitofwork import UnitOfWork

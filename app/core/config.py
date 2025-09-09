@@ -7,9 +7,6 @@ BASE_DIR = Path(__file__).parent.parent
 
 
 class Settings(BaseSettings):
-    API_KEY: str
-    API_BASE_URL: str
-
     DB_HOST: str
     DB_PORT: int
     DB_USER: str

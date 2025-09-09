@@ -1,5 +1,6 @@
 from core.database import async_session_maker
 from repositories.users import UserRepository
+from repositories.wallets import WalletRepository
 
 
 class UnitOfWork:
@@ -10,6 +11,7 @@ class UnitOfWork:
         self.session = async_session_maker()
 
         self.users = UserRepository(self.session)
+        self.wallets = WalletRepository(self.session)
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
         await self.rollback()
